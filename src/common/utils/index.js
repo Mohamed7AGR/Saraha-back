@@ -1,2 +1,2 @@
 export {successResponse} from './response.js';
-export * as exeptions from './exeptions.js';
+export {notFoundExeption,unauthorizedExeption,badRequestExeption,forbiddenExeption,conflictExeption} from './exeptions.js';

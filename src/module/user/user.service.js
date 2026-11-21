@@ -1,16 +1,16 @@
-import { exeptions } from "../../common/index.js";
-import { userModel } from "../../db/model/user.model.js";
+import { notFoundExeption } from "../../common/index.js";
+import userRepo from "../../db/repo/user.repo.js";
 
 export const profile = async (userId) => {
-    let user = await userModel.findById(userId);
+    let user = await userRepo.findById({ id: userId });
     
-    if (!user) exeptions.notFoundExeption("User not found");
+    if (!user) notFoundExeption("User not found");
   return user;
 };
 
 export const updateProfile = async (userId, data) => {
-    let user = await userModel.findByIdAndUpdate(userId._id, data, { new: true });
-    if (!user) exeptions.notFoundExeption("User not found");
+    let user = await userRepo.findByIdAndUpdate({ id: userId, update: data });
+    if (!user) notFoundExeption("User not found");
     return user;
 };
 

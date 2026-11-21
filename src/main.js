@@ -3,10 +3,11 @@ import { connectDB } from "./db/connection.js";
 import configService from "./config/config.service.js";
 import { errorHandler } from "./common/index.js";
 import { authController, userController } from "./module/index.js";
+import cors from "cors";
 
 let port = configService.PORT;
 const app = express();
-app.use(express.json());
+app.use(express.json(),cors());
 await connectDB();
 
 app.use("/auth", authController);

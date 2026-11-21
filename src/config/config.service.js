@@ -16,4 +16,5 @@ export default {
   JWT_ADMIN_REFRESH_SECRET: process.env.JWT_ADMIN_REFRESH_SECRET,
   JWT_USER_ACCESS_SECRET: process.env.JWT_USER_ACCESS_SECRET,
   JWT_USER_REFRESH_SECRET: process.env.JWT_USER_REFRESH_SECRET,
+  Google_Client_ID:process.env.Google_Client_ID
 };
