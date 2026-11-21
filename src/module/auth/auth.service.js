@@ -13,13 +13,16 @@ import { generateToken } from "../../common/security/index.js";
 import { OAuth2Client } from "google-auth-library";
 import configService from "../../config/config.service.js";
 import userRepo from "../../db/repo/user.repo.js";
-
+import { langEnum } from "../../common/enum/index.js";
+import { arMessage } from "../../message/ar.js";
+import { enMessage } from "../../message/en.js";
 const client = new OAuth2Client();
 
-export const signup = async (data) => {
+export const signup = async (data, lang) => {
   let isExists = await userRepo.findOne({ filter: { email: data.email } });
+  const messages = lang === langEnum.arabic ? arMessage : enMessage;
 
-  if (isExists) conflictExeption("Email already exists");
+  if (isExists) conflictExeption(messages["email.alreadyExists"]);
   data.password = await hashPassword({ plainText: data.password });
   data.phone = encrypt(data.phone);
   let user = await userRepo.create({ data });

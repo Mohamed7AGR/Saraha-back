@@ -4,6 +4,8 @@ import { decrypt, successResponse, tokenEnum } from "../../common/index.js";
 import { authMiddleware } from "../../common/middleware/index.js";
 import { roleEnum } from "../../common/enum/index.js";
 import { authorizationMiddleware } from "../../common/middleware/authorization.js";
+import { validation } from "../../common/middleware/validation.js";
+import { userSchema } from "./user.validation.js";
 export const userController = Router();
 
 let access=tokenEnum.access;
@@ -16,6 +18,12 @@ userController.get("/profile", authMiddleware({ role: roleEnum.user, tokenType: 
 
   
 });
+userController.get("/profile/:userId",validation(userSchema),  async (req, res, next) => {
+    
+    let user=await userService.getUserById(req.validate.params.userId);
+    successResponse(res, 200, user, "User profile fetched successfully");
+});
+
 userController.get("/admin/profile", authMiddleware({ role: roleEnum.admin, tokenType: access }), authorizationMiddleware([roleEnum.admin]), async (req, res, next) => {
     let profile = await userService.profile(req.user._id);
     profile.phone = decrypt(profile.phone);

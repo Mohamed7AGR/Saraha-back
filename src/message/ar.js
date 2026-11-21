@@ -1,0 +1,23 @@
+export const arMessage = {
+    "email.invalid": "البريد الإلكتروني غير صالح",
+    "password.min": "كلمة المرور يجب أن تكون على الأقل 8 أحرف",
+    "fullName.min": "الاسم يجب أن يكون على الأقل 5 أحرف",
+    "fullName.space": "الاسم يجب أن يحتوي على فراغ",
+    "phone.invalid": "رقم الهاتف غير صالح",
+    "gender.invalid": " غير صالح",
+    "confirmPassword.invalid": "كلمة المرور غير مطابقة",
+    "email.alreadyExists": "البريد الإلكتروني مستخدم من قبل",
+    "login.success": "تم تسجيل الدخول بنجاح",
+    "login.error": "خطأ في تسجيل الدخول",
+    "signup.success": "تم تسجيل الحساب بنجاح",
+    "signup.error": "خطأ في تسجيل الحساب",
+    "login.email.invalid": "البريد الإلكتروني غير صالح",
+    "login.password.min": "كلمة المرور يجب أن تكون على الأقل 8 أحرف",
+    "signup.fullName.min": "الاسم يجب أن يكون على الأقل 5 أحرف",
+    "signup.fullName.space": "الاسم يجب أن يحتوي على فراغ",
+    "signup.phone.invalid": "رقم الهاتف غير صالح",
+    "signup.gender.invalid": " غير صالح",
+    "signup.confirmPassword.invalid": "كلمة المرور غير مطابقة",
+    "userId.length": "معرف المستخدم يجب أن يكون 24 حرفًا",
+    
+    }

@@ -14,3 +14,11 @@ export const updateProfile = async (userId, data) => {
     return user;
 };
 
+export const getUserById = async (userId) => {
+  let user = await userRepo.findById({
+    id: userId,
+    projection: { firstName: 1, lastName: 1, email: 1, phone: 1, gender: 1 },
+  });
+  if (!user) notFoundExeption("User not found");
+  return user;
+};
