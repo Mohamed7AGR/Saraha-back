@@ -11,9 +11,9 @@ export const userSchema = (lang) => z.object({
         }),
         
     }),
-    query: z.strictObject({
+    /*query: z.strictObject({
 
         date: z.coerce.number({error:"not a number"}),
-     }).optional(),
+     }).optional(),*/
    
 })

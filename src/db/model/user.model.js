@@ -56,6 +56,13 @@ let userSchema = new Schema(
       type: Number,
       enum:  Object.values(providerEnum),
       default: providerEnum.system
+    },
+    changenCredentailAt:{
+      type: Date,
+      default: null,
+    },
+    emailConfirmed:{
+      type: Boolean,
     }
   },
 

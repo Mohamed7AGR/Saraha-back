@@ -4,3 +4,7 @@ export {genderEnum,tokenEnum,roleEnum,authEnum,providerEnum,langEnum} from './en
 export {notFoundExeption,unauthorizedExeption,badRequestExeption,forbiddenExeption,conflictExeption}  from './utils/index.js';
 export {hashPassword,comparePassword,encrypt,decrypt} from './security/index.js';
 export {default as generalFildes} from './utils/generalFildes.js';
+export {setCache,getCache,ttlCache,incrementCache,expireCache,existsCache,keysCache,deleteCache,deleteCacheByPrefix} from './service/cacheService.js';
+export {userRevokeKey} from './service/cacheKey.js';
+export * as mailService from './service/mailService.js';
+export {sendEmail} from './service/mailService.js';

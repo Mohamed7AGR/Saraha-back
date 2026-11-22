@@ -16,5 +16,8 @@ export default {
   JWT_ADMIN_REFRESH_SECRET: process.env.JWT_ADMIN_REFRESH_SECRET,
   JWT_USER_ACCESS_SECRET: process.env.JWT_USER_ACCESS_SECRET,
   JWT_USER_REFRESH_SECRET: process.env.JWT_USER_REFRESH_SECRET,
-  Google_Client_ID:process.env.Google_Client_ID
+  Google_Client_ID:process.env.Google_Client_ID,
+  REDIS_URL: process.env.REDIS_URL,
+  EMAIL_USER: process.env.EMAIL_USER,
+  EMAIL_PASSWORD: process.env.EMAIL_PASSWORD
 };

@@ -1,4 +1,6 @@
 import userRepo from "../../db/repo/user.repo.js";
+import jwt from "jsonwebtoken";
+
 import { verifyToken, comparePassword } from "../security/index.js";
 import {
   unauthorizedExeption,
@@ -10,7 +12,7 @@ import { tokenEnum, authEnum, roleEnum } from "../enum/index.js";
 export const authMiddleware = ({
   role = roleEnum.user,
   tokenType = tokenEnum.access,
-}) => {
+}, t) => {
   return async (req, res, next) => {
     let [prefix, token] = req.headers.authorization.split(" ");
     if (!token) unauthorizedExeption("invalid token");
@@ -30,8 +32,9 @@ export const authMiddleware = ({
         next();
         break;
       case authEnum.Bearer:
-        let payload = verifyToken(token, role, tokenType);
-        req.user = await userRepo.findById({ id: payload.sub });
+        const decoded = jwt.decode(token);
+        const payload =await verifyToken(token, decoded.role, tokenType, req.t);
+        req.user = await userRepo.findById({ id: payload.sub, t });
         req.payload = payload;
         next();
         break;
