@@ -15,3 +15,14 @@ emailEvent.on(emailEventEnum.SINGUP, async (data) => {
     console.error(error);
   }
 });
+emailEvent.on(emailEventEnum.FORGOT_PASSWORD, async (data) => {
+  try {
+    await sendEmail({
+      to: data.to,
+      subject: data.subject || "Forgot Password",
+      html: sendEmailTemplate({ ...data }),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});

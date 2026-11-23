@@ -22,3 +22,6 @@ export const conflictExeption = (message = "Conflict") => {
   return mainExeption(message, 409);
 };
 
+export const tooManyRequests = (message = "Too many requests") => {
+  return mainExeption(message, 429);
+};

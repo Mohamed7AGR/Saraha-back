@@ -6,6 +6,7 @@ import { loginSchema, signupSchema } from "./auth.validation.js";
 
 export const authController = Router();
 
+//signup
 authController.post(
   "/signup",
   validation(signupSchema),
@@ -19,6 +20,7 @@ authController.post(
   },
 );
 
+//login
 authController.post(
   "/login",
   validation(loginSchema),
@@ -32,6 +34,7 @@ authController.post(
   },
 );
 
+//rotate token
 authController.post(
   "/rotate-token",
   authMiddleware({ tokenType: tokenEnum.refresh }),
@@ -45,6 +48,7 @@ authController.post(
   },
 );
 
+//login with google
 authController.post("/loginWithGmail", async (req, res, next) => {
   try {
     let { accessToken, refreshToken, status } = await authService.googleLogin(
@@ -62,6 +66,7 @@ authController.post("/loginWithGmail", async (req, res, next) => {
   }
 });
 
+//logout
 authController.post(
   "/logout",
   authMiddleware({ tokenType: tokenEnum.refresh }), 
@@ -74,6 +79,38 @@ authController.post(
     }
   },
 );
+
+//forgot password
+authController.post("/forgotPassword", async (req, res, next) => {
+  try {
+    let user = await authService.forgotPassword(req.body, req.t);
+    successResponse(res, 200, user, req.t("forgot.password.otp.sent"));
+  } catch (error) {
+    next(error);
+  }
+});
+
+//verify forgot password
+authController.post("/verifyForgotPassword", async (req, res, next) => {
+  try {
+    let user = await authService.verifyForgotPassword(req.body, req.t);
+    successResponse(res, 200, user, req.t("forgot.password.otp.verified"));
+  } catch (error) {
+    next(error);
+  }
+});
+
+//reset password
+authController.post("/resetPassword", async (req, res, next) => {
+  try {
+    let user = await authService.resetPassword(req.body, req.t);
+    successResponse(res, 200, user, req.t("password.reset.success"));
+  } catch (error) {
+    next(error);
+  }
+});
+
+//confirm email
 authController.post("/confirmEmail", async (req, res, next) => {
   try {
     let user = await authService.confirmEmail(req.body, req.t);
@@ -82,3 +119,14 @@ authController.post("/confirmEmail", async (req, res, next) => {
     next(error);
   }
 });
+
+//resend otp
+authController.post("/resendOtp", async (req, res, next) => {
+  try {
+    let user = await authService.resendOtp(req.body, req.t);
+    successResponse(res, 200, user, req.t("otp.resend"));
+  } catch (error) {
+    next(error);
+  }
+});
+

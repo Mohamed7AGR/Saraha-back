@@ -20,6 +20,8 @@ export const arMessage = {
   "signup.confirmPassword.invalid": "كلمة المرور غير مطابقة",
   "userId.length": "معرف المستخدم يجب أن يكون 24 حرفًا",
   "user.notFound": "المستخدم غير موجود",
+  "user.notFoundOrConfirmed":
+    "المستخدم غير موجود أو البريد الإلكتروني مؤكد بالفعل",
   "user.profile.fetched": "تم جلب الملف الشخصي بنجاح",
   "user.profile.updated": "تم تحديث الملف الشخصي بنجاح",
   "logout.success": "تم تسجيل الخروج بنجاح",
@@ -33,4 +35,18 @@ export const arMessage = {
   "otp.expired": "الرمز منتهي ",
   "otp.invalid": "الرمز غير صالح",
   "email.not.confirmed": "البريد الإلكتروني غير مؤكد",
+  "otp.resend": "تم إعادة إرسال الرمز بنجاح",
+  "subject.required": "الموضوع مطلوب",
+  "subject.invalid": "الموضوع غير صالح",
+  "otp.stillValid": "الرمز لا يزال صالحًا",
+  "invalid.email.or.password": "البريد الإلكتروني أو كلمة المرور غير صالحة",
+  "email.already.confirmed": "البريد الإلكتروني مؤكد بالفعل",
+  "otp.trails.exceeded": "تم تجاوز عدد محاولات الرمز",
+  "otp.blocked":
+    "لا يمكنك طلب رمز جديد , يمكنك المحاولة مرة أخرى بعد {{blocked}} دقيقة",
+  "otp.wrong": "لقد قمت بعدد كبير من المحاولات الخاطئة, يمكنك المحاولة مرة أخرى بعد {{blocked}} دقيقة",
+  "forgot.password.success": "تم إعادة تعيين كلمة المرور بنجاح",
+  "forgot.password.otp.sent": "تم إرسال رمز التحقق بنجاح. يرجى التحقق من بريدك الإلكتروني.",
+"forgot.password.otp.verified": "تم التحقق من الرمز بنجاح. يمكنك الآن إعادة تعيين كلمة المرور.",
+"password.reset.success": "تم إعادة تعيين كلمة المرور بنجاح",
 };

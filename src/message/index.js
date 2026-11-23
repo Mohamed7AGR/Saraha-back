@@ -7,7 +7,12 @@ const messages = {
   [langEnum.english]: enMessage,
 };
 
-export const getMessage = (lang, key) => {
+export const getMessage = (lang, key, params = {}) => {
   const dict = messages[lang] || messages[langEnum.english];
-  return dict[key] || messages[langEnum.english][key] || key;
+  let text = dict[key] || messages[langEnum.english][key] || key;
+
+  Object.entries(params).forEach(([k, v]) => {
+    text = text.replaceAll(`{{${k}}}`, String(v));
+  });
+  return text;
 };
