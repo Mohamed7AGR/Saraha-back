@@ -49,4 +49,8 @@ export const arMessage = {
   "forgot.password.otp.sent": "تم إرسال رمز التحقق بنجاح. يرجى التحقق من بريدك الإلكتروني.",
 "forgot.password.otp.verified": "تم التحقق من الرمز بنجاح. يمكنك الآن إعادة تعيين كلمة المرور.",
 "password.reset.success": "تم إعادة تعيين كلمة المرور بنجاح",
+"user.image.uploaded": "تم تحميل الصورة بنجاح",
+"user.image.folder.not.found": "مجلد الصورة غير موجود",
+"user.image.invalid": "نوع الصورة غير صالح",
+"not.allowed.file.type": "نوع الملف غير مسموح به",
 };

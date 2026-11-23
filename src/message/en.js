@@ -46,4 +46,8 @@ export const enMessage = {
   "forgot.password.otp.sent": "OTP sent successfully. Please check your email.",
 "forgot.password.otp.verified": "OTP verified successfully. You can now reset your password.",
 "password.reset.success": "Password reset successfully",
+"user.image.uploaded": "Image uploaded successfully",
+"user.image.folder.not.found": "Image folder not found",
+"user.image.invalid": "Invalid image type",
+"not.allowed.file.type": "Not allowed  type",
 };
