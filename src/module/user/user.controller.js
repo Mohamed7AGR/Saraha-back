@@ -16,6 +16,7 @@ export const userController = Router();
 let access = tokenEnum.access;
 let refresh = tokenEnum.refresh;
 
+//get user profile
 userController.get(
   "/profile",
   authMiddleware({ role: roleEnum.user, tokenType: access }),
@@ -25,6 +26,8 @@ userController.get(
     successResponse(res, 200, profile, req.t("user.profile.fetched"));
   },
 );
+
+//get user profile by id
 userController.get(
   "/profile/:userId",
   authMiddleware({ tokenType: tokenEnum.access }),
@@ -42,6 +45,7 @@ userController.get(
   },
 );
 
+//get admin profile
 userController.get(
   "/admin/profile",
   authMiddleware({ role: roleEnum.admin, tokenType: access }),
@@ -53,15 +57,17 @@ userController.get(
   },
 );
 
+//update user profile
 userController.put("/profile", authMiddleware({}), async (req, res, next) => {
   let data = req.body;
   let updatedUser = await userService.updateProfile(req.user._id, data);
   successResponse(res, 200, updatedUser, req.t("user.profile.updated"));
 });
 
+//upload user image
 userController.post(
   "/image",
-  multerMiddleware({ storageFolder: "users", types: fileTypes.image }).array(
+  multerMiddleware({ storageFolder: "users", types: fileTypes.image, }).array(
     "image",3
   ),
   processFiles({ types: fileTypes.image }),

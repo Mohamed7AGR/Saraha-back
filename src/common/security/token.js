@@ -66,9 +66,12 @@ export const verifyToken = async (
     t,
     projection: { changenCredentailAt: 1 },
   });
-  let changenCredentailAtSec = Math.ceil(user.changenCredentailAt.getTime() / 1000)??0;
-  if (changenCredentailAtSec  > iat) {
-    unauthorizedExeption(t("user.credentail.expired"));
-  }
+  let changenCredentailAtSec = user?.changenCredentailAt
+  ? Math.ceil(user.changenCredentailAt.getTime() / 1000)
+  : 0;
+
+if (changenCredentailAtSec > iat) {
+  unauthorizedExeption(t("user.credentail.expired"));
+}
   return jwt.verify(token, secret);
 };

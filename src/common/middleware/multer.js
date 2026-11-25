@@ -44,7 +44,7 @@ export const multerMiddleware = ({
 };
 
 
-export const processFiles = ({ types = fileTypes.image } = {}) => {
+export const processFiles = ({ types = fileTypes.image, required = true } = {}) => {
     return async (req, res, next) => {
       try {
         const files = req.files
@@ -55,10 +55,12 @@ export const processFiles = ({ types = fileTypes.image } = {}) => {
           ? [req.file]
           : [];
   
-        if (!files.length) {
-          return badRequestExeption(req.t("user.image.required"));
-        }
-  
+          if (!files.length) {
+            if (required) {
+              return badRequestExeption(req.t("user.image.required"));
+            }
+            return next();
+          }
         for (const file of files) {
             const result = await checkFile(file);
           

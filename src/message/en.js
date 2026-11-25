@@ -50,4 +50,6 @@ export const enMessage = {
 "user.image.folder.not.found": "Image folder not found",
 "user.image.invalid": "Invalid image type",
 "not.allowed.file.type": "Not allowed  type",
+"messages.created": "Message created successfully",
+"message.contentOrFilesRequired": "Content or files are required",
 };

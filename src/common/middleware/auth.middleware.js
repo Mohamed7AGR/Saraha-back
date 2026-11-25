@@ -43,3 +43,29 @@ export const authMiddleware = ({
     }
   };
 };
+export const optionalAuth = ({ tokenType = tokenEnum.access } = {}) => {
+  return async (req, res, next) => {
+    try {
+      const header = req.headers.authorization;
+
+      if (!header) return next();
+
+      const [prefix, token] = header.split(" ");
+
+      if (!token || prefix !== authEnum.Bearer) return next();
+
+      const decoded = jwt.decode(token);
+
+      if (decoded?.role === undefined || decoded?.role === null) {
+        return next();
+      }
+
+      const payload = await verifyToken(token, decoded.role, tokenType, req.t);
+      req.user = await userRepo.findById({ id: payload.sub });
+
+      return next();
+    } catch (error) {
+      return next(error);
+    }
+  };
+};

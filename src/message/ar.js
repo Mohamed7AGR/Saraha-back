@@ -53,4 +53,6 @@ export const arMessage = {
 "user.image.folder.not.found": "مجلد الصورة غير موجود",
 "user.image.invalid": "نوع الصورة غير صالح",
 "not.allowed.file.type": "نوع الملف غير مسموح به",
+"messages.created": "تم إنشاء الرسالة بنجاح",
+"message.contentOrFilesRequired": "يجب أن يكون هناك محتوى أو ملفات",
 };
