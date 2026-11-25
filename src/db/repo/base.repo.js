@@ -34,15 +34,15 @@ export default (model) => {
         return data;
       },
   
-      //  findOneAndDelete : async ({ filter,populate }) => {
-      //   let data = await model.findOneAndDelete(filter);
-      //   return data;
-      // },
+       findOneAndDelete : async ({ filter,populate }) => {
+        let data = await model.findOneAndDelete(filter);
+        return data;
+      },
   
-      // findByIdAndDelete : async ({ id,populate }) => {
-      //   let data = await model.findByIdAndDelete(id);
-      //   return data;
-      // },
+      findByIdAndDelete : async ({ id,populate }) => {
+        let data = await model.findByIdAndDelete(id);
+        return data;
+      },
       pagination: async ({ filter, page, limit, sort = undefined, populate }) => {
         page = Number(page) || 1;
         limit = Number(limit) || 10;
@@ -54,8 +54,13 @@ export default (model) => {
         if (populate) {
           query.populate(populate);
         }
-        return await query.exec();
+        let data = await query.exec();
+        const count = await model.countDocuments(filter);
+        
+        return {  count, data };
       },
+
+
       create: async ({ data, options }) => {
         let created = await model.create(data, options);
         return created;

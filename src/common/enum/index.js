@@ -5,3 +5,4 @@ export {providerEnum} from './provider.enum.js';
 export {authEnum} from './auth.enum.js';
 export {langEnum} from './lang.enum.js';
 export {logoutEnum} from './logoutEnum.js';
+export {filterTypeEnum} from './filterType.js';

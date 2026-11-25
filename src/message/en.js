@@ -52,4 +52,13 @@ export const enMessage = {
 "not.allowed.file.type": "Not allowed  type",
 "messages.created": "Message created successfully",
 "message.contentOrFilesRequired": "Content or files are required",
-};
+"messages.fetched": "Messages fetched successfully",
+"filterType.notFound": "Filter type not found",
+"messages.notFound": "Messages not found",
+"query.page.invalid": "Page must be a valid number",
+"query.limit.invalid": "Limit must be a valid number",
+"query.type.invalid": "Filter type is required and must be 0 for send, 1 for receive, or 2 for all",
+"messages.deleted": "Message deleted successfully",
+"message.notFound": "Message not found",
+"message.notallowed": "You are not allowed to delete this message",
+  };

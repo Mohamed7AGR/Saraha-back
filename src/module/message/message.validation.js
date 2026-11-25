@@ -1,6 +1,7 @@
 import * as z from "zod";
 import { generalFildes as gf } from "../../common/index.js";
 import { getMessage } from "../../message/index.js";
+import { filterTypeEnum } from "../../common/enum/index.js";
 
 export const createMessageSchema = (lang) =>
   z
@@ -22,4 +23,25 @@ export const createMessageSchema = (lang) =>
           path: ["body"],
         });
       }
+    });
+
+export const getMessagesSchema = (lang) =>
+  z.object({
+    query: z.object({
+      page: z.coerce.number({
+        error: () => getMessage(lang, "query.page.invalid"),
+      }).int().positive().default(1),
+      limit: z.coerce.number({
+        error: () => getMessage(lang, "query.limit.invalid"),
+      }).int().positive().default(10),
+      type: z.enum({
+        error: () => getMessage(lang, "query.type.invalid"),
+      }).default(filterTypeEnum.ALL),
+    }),
+  });
+  export const deleteMessageSchema = (lang) =>
+    z.object({
+      params: z.strictObject({
+        messageId: gf.userId(lang),
+      }),
     });

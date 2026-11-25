@@ -42,5 +42,10 @@ export default {
     buffer: z.instanceof(Buffer).optional(),
     destination: z.string().optional(),
     filename: z.string().optional(),
-  })
+  }),
+  paginationQuery: (lang) =>
+    z.strictObject({
+      page: z.coerce.number().int().positive().default(1),
+      limit: z.coerce.number().int().positive().max(100).default(10),
+    }),
 };

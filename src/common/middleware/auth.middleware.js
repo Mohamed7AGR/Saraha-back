@@ -14,8 +14,12 @@ export const authMiddleware = ({
   tokenType = tokenEnum.access,
 }, t) => {
   return async (req, res, next) => {
-    let [prefix, token] = req.headers.authorization.split(" ");
-    if (!token) unauthorizedExeption("invalid token");
+      try {
+        const header = req.headers.authorization;
+        if (!header) unauthorizedExeption(req.t("token.not.found"));
+        const [prefix, token] = header.split(" ");
+        if (!token) unauthorizedExeption(req.t("token.invalid"));
+  
     switch (prefix) {
       case authEnum.Basic:
         let [email, password] = Buffer.from(token, "base64")
@@ -41,12 +45,17 @@ export const authMiddleware = ({
       default:
         badRequestExeption("invalid authentication method");
     }
+    } catch (error) {
+      return next(error);
+    }
   };
 };
+
 export const optionalAuth = ({ tokenType = tokenEnum.access } = {}) => {
   return async (req, res, next) => {
     try {
       const header = req.headers.authorization;
+      console.log("AUTH HEADER:", header);
 
       if (!header) return next();
 

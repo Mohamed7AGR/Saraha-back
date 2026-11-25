@@ -2,13 +2,18 @@ import { Router } from "express";
 import * as messageService from "./message.service.js";
 import { successResponse } from "../../common/index.js";
 import { validation } from "../../common/middleware/validation.js";
-import { createMessageSchema } from "./message.validation.js";
+import {
+  createMessageSchema,
+  getMessagesSchema,
+  deleteMessageSchema,
+} from "./message.validation.js";
 import {
   fileTypes,
   multerMiddleware,
   processFiles,
 } from "../../common/middleware/multer.js";
-import { optionalAuth } from "../../common/middleware/index.js";
+import { optionalAuth, authMiddleware } from "../../common/middleware/index.js";
+import { tokenEnum } from "../../common/enum/index.js";
 
 export const messageController = Router();
 
@@ -43,5 +48,30 @@ messageController.post(
 );
 
 //get messages
-
+messageController.get(
+  "/",
+  authMiddleware({ tokenType: tokenEnum.access }),
+  validation(getMessagesSchema),
+  async (req, res, next) => {
+    try {
+      let data = await messageService.getMessages(req.user, req.validate.query, req.t);
+      successResponse(res, 200, data, req.t("messages.fetched"));
+    } catch (error) {
+      next(error);
+    }
+  },
+);
 //delete message
+messageController.delete(
+  "/:messageId",
+  authMiddleware({ tokenType: tokenEnum.access }),
+  validation(deleteMessageSchema),
+  async (req, res, next) => {
+    try {
+      let data = await messageService.deleteMessage(req.user, req.validate.params, req.t);
+      successResponse(res, 200, data, req.t("messages.deleted"));
+    } catch (error) {
+      next(error);
+    }
+  },
+);

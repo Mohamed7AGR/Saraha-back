@@ -55,4 +55,13 @@ export const arMessage = {
 "not.allowed.file.type": "نوع الملف غير مسموح به",
 "messages.created": "تم إنشاء الرسالة بنجاح",
 "message.contentOrFilesRequired": "يجب أن يكون هناك محتوى أو ملفات",
-};
+"messages.fetched": "تم جلب الرسائل بنجاح",
+"filterType.notFound": "نوع الفلترة غير موجود",
+"messages.notFound": "الرسائل غير موجودة",
+"query.page.invalid": "رقم الصفحة غير صالح",
+"query.limit.invalid": "الحد غير صالح",
+"query.type.invalid": "نوع الفلترة مطلوب ويجب أن يكون 0 للإرسال، 1 للاستقبال، أو 2 للكل",
+"messages.deleted": "تم حذف الرسالة بنجاح",
+"message.notFound": "الرسالة غير موجودة",
+"message.notallowed": "لا يمكنك حذف الرسالة",
+    };
